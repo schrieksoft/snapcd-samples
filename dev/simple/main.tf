@@ -3,6 +3,13 @@ resource "time_sleep" "wait" {
   destroy_duration = "${var.wait}s"
 }
 
+
+resource "time_sleep" "wait2" {
+  depends_on = [time_sleep.wait]
+  create_duration  = "${var.wait}s"
+  destroy_duration = "${var.wait}s"
+}
+
 resource "random_uuid" "vpc_id" {
   depends_on = [time_sleep.wait]
 }
